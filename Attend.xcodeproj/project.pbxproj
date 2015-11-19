@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D64BAD471BFE6A6700DB4AB4 /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64BAD461BFE6A6700DB4AB4 /* signUpViewController.swift */; };
 		D6CF52C21BFD99D4006BDD6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CF52C11BFD99D4006BDD6C /* AppDelegate.swift */; };
 		D6CF52C41BFD99D4006BDD6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CF52C31BFD99D4006BDD6C /* ViewController.swift */; };
 		D6CF52C71BFD99D4006BDD6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6CF52C51BFD99D4006BDD6C /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D64BAD461BFE6A6700DB4AB4 /* signUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
 		D6CF52BE1BFD99D4006BDD6C /* Attend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CF52C11BFD99D4006BDD6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6CF52C31BFD99D4006BDD6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,11 +99,12 @@
 		D6CF52C01BFD99D4006BDD6C /* Attend */ = {
 			isa = PBXGroup;
 			children = (
+				D6CF52C51BFD99D4006BDD6C /* Main.storyboard */,
+				D6CF52CA1BFD99D5006BDD6C /* LaunchScreen.storyboard */,
 				D6CF52C11BFD99D4006BDD6C /* AppDelegate.swift */,
 				D6CF52C31BFD99D4006BDD6C /* ViewController.swift */,
-				D6CF52C51BFD99D4006BDD6C /* Main.storyboard */,
+				D64BAD461BFE6A6700DB4AB4 /* signUpViewController.swift */,
 				D6CF52C81BFD99D4006BDD6C /* Assets.xcassets */,
-				D6CF52CA1BFD99D5006BDD6C /* LaunchScreen.storyboard */,
 				D6CF52CD1BFD99D5006BDD6C /* Info.plist */,
 			);
 			path = Attend;
@@ -258,6 +261,7 @@
 			files = (
 				D6CF52C41BFD99D4006BDD6C /* ViewController.swift in Sources */,
 				D6CF52C21BFD99D4006BDD6C /* AppDelegate.swift in Sources */,
+				D64BAD471BFE6A6700DB4AB4 /* signUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +488,7 @@
 				D6CF52E81BFD99D5006BDD6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D6CF52E91BFD99D5006BDD6C /* Build configuration list for PBXNativeTarget "AttendTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +497,7 @@
 				D6CF52EB1BFD99D5006BDD6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D6CF52EC1BFD99D5006BDD6C /* Build configuration list for PBXNativeTarget "AttendUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +506,7 @@
 				D6CF52EE1BFD99D5006BDD6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
