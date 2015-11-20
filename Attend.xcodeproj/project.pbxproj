@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D64BAD471BFE6A6700DB4AB4 /* signUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64BAD461BFE6A6700DB4AB4 /* signUpViewController.swift */; };
+		D64BAD491BFE81B300DB4AB4 /* classOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64BAD481BFE81B300DB4AB4 /* classOverviewViewController.swift */; };
 		D6CF52C21BFD99D4006BDD6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CF52C11BFD99D4006BDD6C /* AppDelegate.swift */; };
 		D6CF52C41BFD99D4006BDD6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CF52C31BFD99D4006BDD6C /* ViewController.swift */; };
 		D6CF52C71BFD99D4006BDD6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6CF52C51BFD99D4006BDD6C /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		D64BAD461BFE6A6700DB4AB4 /* signUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signUpViewController.swift; sourceTree = "<group>"; };
+		D64BAD481BFE81B300DB4AB4 /* classOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = classOverviewViewController.swift; sourceTree = "<group>"; };
 		D6CF52BE1BFD99D4006BDD6C /* Attend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6CF52C11BFD99D4006BDD6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6CF52C31BFD99D4006BDD6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				D6CF52C11BFD99D4006BDD6C /* AppDelegate.swift */,
 				D6CF52C31BFD99D4006BDD6C /* ViewController.swift */,
 				D64BAD461BFE6A6700DB4AB4 /* signUpViewController.swift */,
+				D64BAD481BFE81B300DB4AB4 /* classOverviewViewController.swift */,
 				D6CF52C81BFD99D4006BDD6C /* Assets.xcassets */,
 				D6CF52CD1BFD99D5006BDD6C /* Info.plist */,
 			);
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D64BAD491BFE81B300DB4AB4 /* classOverviewViewController.swift in Sources */,
 				D6CF52C41BFD99D4006BDD6C /* ViewController.swift in Sources */,
 				D6CF52C21BFD99D4006BDD6C /* AppDelegate.swift in Sources */,
 				D64BAD471BFE6A6700DB4AB4 /* signUpViewController.swift in Sources */,

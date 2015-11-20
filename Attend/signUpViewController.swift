@@ -21,15 +21,17 @@ class signUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //Elements
+    @IBOutlet weak var firstnameTxt: UITextField!
+    @IBOutlet weak var lastnameTxt: UITextField!
+    @IBOutlet weak var signupTxt: UITextField!
+    @IBOutlet weak var passwordTxt: UITextField!
+    
+    //Buttons
+    @IBAction func signupButton(sender: AnyObject) {
+        
     }
-    */
+    
+    
 
 }

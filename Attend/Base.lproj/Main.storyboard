@@ -37,18 +37,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pTV-1u-B4j">
-                                <rect key="frame" x="111" y="270" width="99" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7eH-mE-cFJ"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sign Up box" id="ziF-wy-bxQ">
                                 <rect key="frame" x="-15" y="450" width="350" height="178"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -73,6 +61,19 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pTV-1u-B4j">
+                                <rect key="frame" x="111" y="270" width="99" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7eH-mE-cFJ"/>
+                                    <segue destination="OtO-9i-x3w" kind="modal" id="W7g-42-hvy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -89,10 +90,63 @@
             </objects>
             <point key="canvasLocation" x="202" y="310"/>
         </scene>
-        <!--View Controller-->
+        <!--Class Overview View Controller-->
+        <scene sceneID="LWW-E0-bA2">
+            <objects>
+                <viewController id="OtO-9i-x3w" customClass="classOverviewViewController" customModule="Attend" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WxK-2j-1PH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defualt-School-Banner" id="0f4-2I-nwA">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="146"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TeacherDefualt" id="eiJ-No-AVb">
+                                <rect key="frame" x="98" y="94" width="125" height="121"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mrs. Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kqa-88-JLb">
+                                <rect key="frame" x="52" y="223" width="217" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Physics 11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xbu-1P-yVd">
+                                <rect key="frame" x="20" y="255" width="280" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="26"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Q5f-Eh-eee">
+                                <rect key="frame" x="-1" y="492" width="322" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" image="attend button"/>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="profilePicture" destination="eiJ-No-AVb" id="lU1-Qr-SDu"/>
+                        <outlet property="schoolImage" destination="0f4-2I-nwA" id="2hd-9S-A2K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2TL-wW-ErF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="589" y="310"/>
+        </scene>
+        <!--Sign Up View Controller-->
         <scene sceneID="0Sa-6z-fwG">
             <objects>
-                <viewController id="x7j-mg-q4G" sceneMemberID="viewController">
+                <viewController id="x7j-mg-q4G" customClass="signUpViewController" customModule="Attend" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ylD-Rf-PYO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -144,6 +198,9 @@
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
                                 <state key="normal" title="Sign Up!"/>
+                                <connections>
+                                    <action selector="signupButton:" destination="x7j-mg-q4G" eventType="touchUpInside" id="88J-qC-j8o"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SyI-hd-RxR">
                                 <rect key="frame" x="20" y="12" width="53" height="53"/>
@@ -160,6 +217,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="oa9-iX-ndO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="firstnameTxt" destination="bvB-X0-Id6" id="nJc-Bj-ptm"/>
+                        <outlet property="lastnameTxt" destination="MlN-Ge-9Ok" id="0Sl-Hc-hJv"/>
+                        <outlet property="passwordTxt" destination="xUq-2x-uN0" id="fX0-Cv-eNd"/>
+                        <outlet property="signupTxt" destination="vyW-dc-u0u" id="ehm-MT-oow"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YBF-wD-1Fv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -170,6 +233,9 @@
         <image name="Hand up in class" width="250" height="444"/>
         <image name="Rounded Version" width="341" height="341"/>
         <image name="Sign Up box" width="250" height="43"/>
+        <image name="TeacherDefualt" width="170" height="170"/>
+        <image name="attend button" width="341" height="85"/>
         <image name="back57" width="85" height="85"/>
+        <image name="defualt-School-Banner" width="611" height="214"/>
     </resources>
 </document>
