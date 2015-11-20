@@ -98,7 +98,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defualt-School-Banner" id="0f4-2I-nwA">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defualt-school-banner" id="0f4-2I-nwA">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="146"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
@@ -129,6 +129,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" image="attend button"/>
+                                <connections>
+                                    <action selector="attendButton:" destination="OtO-9i-x3w" eventType="touchUpInside" id="tRV-6r-UVQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -236,6 +239,6 @@
         <image name="TeacherDefualt" width="170" height="170"/>
         <image name="attend button" width="341" height="85"/>
         <image name="back57" width="85" height="85"/>
-        <image name="defualt-School-Banner" width="611" height="214"/>
+        <image name="defualt-school-banner" width="303" height="151"/>
     </resources>
 </document>

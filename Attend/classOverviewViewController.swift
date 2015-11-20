@@ -21,11 +21,7 @@ class classOverviewViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    
-    
-    
     
     
     //Elements
@@ -33,6 +29,9 @@ class classOverviewViewController: UIViewController {
     @IBOutlet weak var schoolImage: UIImageView!
     
     //Buttons
+    @IBAction func attendButton(sender: AnyObject) {    //This button will take you too ibeacon sensor
+        
+    }
     
     //Functions
     
@@ -40,7 +39,7 @@ class classOverviewViewController: UIViewController {
         profilePicture.layer.cornerRadius = profilePicture.frame.size.width/2 //Rounding image
         profilePicture.clipsToBounds = true
         profilePicture.layer.borderColor = UIColor.whiteColor().CGColor //Boarder Color
-        profilePicture.layer.borderWidth = 2 //Boarder Size
+        profilePicture.layer.borderWidth = 3 //Boarder Size
         
     }
 
