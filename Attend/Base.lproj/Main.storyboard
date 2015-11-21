@@ -88,7 +88,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="202" y="310"/>
+            <point key="canvasLocation" x="-850" y="-413"/>
         </scene>
         <!--Class Overview View Controller-->
         <scene sceneID="LWW-E0-bA2">
@@ -131,6 +131,7 @@
                                 <state key="normal" image="attend button"/>
                                 <connections>
                                     <action selector="attendButton:" destination="OtO-9i-x3w" eventType="touchUpInside" id="tRV-6r-UVQ"/>
+                                    <segue destination="Nqb-dh-hhw" kind="modal" id="yo5-5e-2gG"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -144,7 +145,77 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2TL-wW-ErF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="589" y="310"/>
+            <point key="canvasLocation" x="-463" y="-413"/>
+        </scene>
+        <!--Beacon Scanner View Controller-->
+        <scene sceneID="83f-P7-h70">
+            <objects>
+                <viewController id="Nqb-dh-hhw" customClass="iBeaconScannerViewController" customModule="Attend" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LLq-bA-GdV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Class" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nIC-vt-CPU">
+                                <rect key="frame" x="30" y="20" width="260" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname and Lastname" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T2H-6C-8qt">
+                                <rect key="frame" x="30" y="51" width="260" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="21"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Iw-Qh-Ixl">
+                                <rect key="frame" x="30" y="540" width="260" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.png" id="VjV-A1-jcJ">
+                                <rect key="frame" x="40" y="404" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Closer to The Beacon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BMD-W5-0iD">
+                                <rect key="frame" x="20" y="180" width="280" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="W7Q-B6-MpD">
+                                <rect key="frame" x="7" y="20" width="20" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" image="back icon"/>
+                                <connections>
+                                    <segue destination="OtO-9i-x3w" kind="modal" id="eQb-1q-RGS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="animatedCheckIn" destination="VjV-A1-jcJ" id="eAf-TB-1oP"/>
+                        <outlet property="getCloser" destination="BMD-W5-0iD" id="AbQ-MJ-F7M"/>
+                        <outlet property="statusLabel" destination="0Iw-Qh-Ixl" id="3bQ-Dn-L9c"/>
+                        <outlet property="studentName" destination="T2H-6C-8qt" id="fvv-ge-MLv"/>
+                        <outlet property="welcomeLabel" destination="nIC-vt-CPU" id="66U-mX-OSR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KPo-Ol-xR1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-114" y="-413"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="0Sa-6z-fwG">
@@ -229,16 +300,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YBF-wD-1Fv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="202" y="981"/>
+            <point key="canvasLocation" x="-850" y="258"/>
         </scene>
     </scenes>
     <resources>
+        <image name="1.png" width="512" height="512"/>
         <image name="Hand up in class" width="250" height="444"/>
         <image name="Rounded Version" width="341" height="341"/>
         <image name="Sign Up box" width="250" height="43"/>
         <image name="TeacherDefualt" width="170" height="170"/>
         <image name="attend button" width="341" height="85"/>
+        <image name="back icon" width="20" height="43"/>
         <image name="back57" width="85" height="85"/>
         <image name="defualt-school-banner" width="303" height="151"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="eQb-1q-RGS"/>
+    </inferredMetricsTieBreakers>
 </document>
