@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import SwiftyJSON
 
 class iBeaconScannerViewController: UIViewController , CLLocationManagerDelegate {
     var completedCheckIn = false
@@ -104,6 +105,17 @@ class iBeaconScannerViewController: UIViewController , CLLocationManagerDelegate
         animatedCheckIn.hidden = false
         getCloser.hidden = true
         statusLabel.hidden = false
+    }
+    
+    func currentUser(){
+        
+        //1. Find session id (Get this off the local datastore)
+        
+        //2. Use the session id to send a get request
+        
+        //3. Store current user info as var from the JSON file
+        
+        
     }
 
 

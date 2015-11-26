@@ -71,7 +71,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7eH-mE-cFJ"/>
-                                    <segue destination="OtO-9i-x3w" kind="modal" id="W7g-42-hvy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -82,8 +81,9 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="emailTxt" destination="KzD-gM-9pH" id="4H2-bI-n8B"/>
-                        <outlet property="errorTxt" destination="2ao-N4-YgW" id="Q73-eP-kMN"/>
+                        <outlet property="errorLabel" destination="2ao-N4-YgW" id="X5n-JS-HCf"/>
                         <outlet property="passwordTxt" destination="ib6-Gm-IWF" id="U7j-TB-kTV"/>
+                        <segue destination="OtO-9i-x3w" kind="modal" identifier="loginSuccess" id="es4-kU-ME7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -138,6 +138,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="3uS-el-GOi"/>
                     <connections>
                         <outlet property="profilePicture" destination="eiJ-No-AVb" id="lU1-Qr-SDu"/>
                         <outlet property="schoolImage" destination="0f4-2I-nwA" id="2hd-9S-A2K"/>
@@ -238,51 +239,59 @@
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Firstname" textAlignment="center" minimumFontSize="17" id="bvB-X0-Id6">
-                                <rect key="frame" x="20" y="74" width="129" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lastname" textAlignment="center" minimumFontSize="17" id="MlN-Ge-9Ok">
-                                <rect key="frame" x="171" y="74" width="129" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" id="vyW-dc-u0u">
-                                <rect key="frame" x="20" y="112" width="280" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Create a Password" textAlignment="center" minimumFontSize="17" id="xUq-2x-uN0">
-                                <rect key="frame" x="20" y="150" width="280" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NWC-f1-qda">
-                                <rect key="frame" x="89" y="188" width="143" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
-                                <state key="normal" title="Sign Up!"/>
-                                <connections>
-                                    <action selector="signupButton:" destination="x7j-mg-q4G" eventType="touchUpInside" id="88J-qC-j8o"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SyI-hd-RxR">
                                 <rect key="frame" x="20" y="12" width="53" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" image="back57"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="modal" id="Puc-vz-T7b"/>
+                                    <segue destination="BYZ-38-t0r" kind="push" id="BEG-Ry-LzH"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2aL-5p-bsL">
+                                <rect key="frame" x="20" y="65" width="280" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Firstname" textAlignment="center" minimumFontSize="17" id="bvB-X0-Id6">
+                                <rect key="frame" x="20" y="96" width="129" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lastname" textAlignment="center" minimumFontSize="17" id="MlN-Ge-9Ok">
+                                <rect key="frame" x="171" y="96" width="129" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" id="vyW-dc-u0u">
+                                <rect key="frame" x="20" y="134" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Create a Password" textAlignment="center" minimumFontSize="17" id="xUq-2x-uN0">
+                                <rect key="frame" x="20" y="172" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NWC-f1-qda">
+                                <rect key="frame" x="89" y="210" width="143" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                                <state key="normal" title="Sign Up!"/>
+                                <connections>
+                                    <action selector="signupButton:" destination="x7j-mg-q4G" eventType="touchUpInside" id="88J-qC-j8o"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -292,10 +301,12 @@
                     <navigationItem key="navigationItem" id="oa9-iX-ndO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="emailTxt" destination="vyW-dc-u0u" id="PqR-q3-ozi"/>
+                        <outlet property="errorLabel" destination="2aL-5p-bsL" id="7Ze-ND-M7o"/>
                         <outlet property="firstnameTxt" destination="bvB-X0-Id6" id="nJc-Bj-ptm"/>
                         <outlet property="lastnameTxt" destination="MlN-Ge-9Ok" id="0Sl-Hc-hJv"/>
                         <outlet property="passwordTxt" destination="xUq-2x-uN0" id="fX0-Cv-eNd"/>
-                        <outlet property="signupTxt" destination="vyW-dc-u0u" id="ehm-MT-oow"/>
+                        <segue destination="OtO-9i-x3w" kind="modal" identifier="signUptoAttend" id="N3c-S1-Z4S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YBF-wD-1Fv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -315,6 +326,6 @@
         <image name="defualt-school-banner" width="303" height="151"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eQb-1q-RGS"/>
+        <segue reference="es4-kU-ME7"/>
     </inferredMetricsTieBreakers>
 </document>
