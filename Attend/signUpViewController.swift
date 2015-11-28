@@ -10,13 +10,14 @@ import UIKit
 import SwiftyJSON
 
 class signUpViewController: UIViewController {
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         errorLabel.hidden = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -28,22 +29,19 @@ class signUpViewController: UIViewController {
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
-    
     //Buttons
     @IBAction func signupButton(sender: AnyObject) {
         signUpRequest() //This send the user info to there server
     }
     
     
-    //function
+    //functions
     
     func signUpRequest(){
-        
-        let  firstName : String = firstnameTxt.text!
-        let lastName : String = lastnameTxt.text!
         let email : String = emailTxt.text!
         let password : String = passwordTxt.text!
-        
+        let firstName : String = firstnameTxt.text!
+        let lastName : String = lastnameTxt.text!
         let url : String = "http://www.thegoodsite.org/attend/api.php?newuser_email=\(email)&newuser_name_first=\(firstName)&newuser_name_last=\(lastName)&newuser_pass=\(password)"
         let nsurly = NSURL(string: url)
         let jsonData = NSData(contentsOfURL: nsurly!) as NSData!
@@ -79,64 +77,55 @@ class signUpViewController: UIViewController {
             errorLabel.hidden = false
             errorLabel.text = "\(errorText)"
         }
-        
-        //-----------------------------------------------------
-        
-        /*
-        enum defaultsKeys {
-        static let keyOne = "firstStringKey"
-        static let keyTwo = "secondStringKey"
-        }
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        defaults.setValue("Some String Value", forKey: defaultsKeys.keyOne)
-        defaults.setValue("Another String Value", forKey: defaultsKeys.keyTwo)
-        
-        defaults.synchronize()
-        
-        
-        let defualtsCheck = NSUserDefaults.standardUserDefaults()
-        
-        if let stringOne = defaults.stringForKey(defaultsKeys.keyOne) {
-        print(stringOne) // Some String Value
-        }
-        
-        if let stringTwo = defaults.stringForKey(defaultsKeys.keyTwo) {
-        print(stringTwo) // Another String Value
-        }
-        */
-
-        
-        //PARSE JSON FILE FOR SESH ID--------
+        saveData()
+    }
+    
+    func saveData(){
         
         enum defaultsKeys{
-            static let keyOne = "SeshID:"
-            static let keyTwo = "UID:"
+            static let sessionID = "SeshID:"
+            static let UID = "UID:"
         }
         
+        let email : String = emailTxt.text!
+        let password : String = passwordTxt.text!
+        let firstName : String = firstnameTxt.text!
+        let lastName : String = lastnameTxt.text!
+        
+        let url : String = "http://www.thegoodsite.org/attend/api.php?newuser_email=\(email)&newuser_name_first=\(firstName)&newuser_name_last=\(lastName)&newuser_pass=\(password)"
+        let nsurly = NSURL(string: url)
+        let jsonData = NSData(contentsOfURL: nsurly!) as NSData!
+        let readableJSON = JSON(data: jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        
+        let userSessionID = readableJSON["newsessid"]
+        NSLog("SESHID \(userSessionID)")
+        let uid = readableJSON["newuser"]
+        NSLog("\(uid)")
         let defaults = NSUserDefaults.standardUserDefaults()
-        
-        defaults.setValue("\(userSessionID)", forKey: defaultsKeys.keyOne)
-        defaults.setValue("\(uid)", forKey: defaultsKeys.keyTwo)
-        
+        defaults.setValue("\(userSessionID)", forKey: defaultsKeys.sessionID)
+        defaults.setValue("\(uid)", forKey: defaultsKeys.UID)
         defaults.synchronize() //SESH ID and UID has been sent
-        
-        //View the local datastore
-        let defualtsCheck = NSUserDefaults.standardUserDefaults()
-        
-        if let stringOne = defaults.stringForKey(defaultsKeys.keyOne) {
-            print("LOCAL DATA STORE: SESSION ID: \(stringOne)") // Some String Value
-        }
-        
-        if let stringTwo = defaults.stringArrayForKey(defaultsKeys.keyTwo){
-            print("LOCAL DATA STORE : UID: \(stringTwo)")
-        }
-        //-----------------------------------
-        
-        
-        
+    }
     
+    class func loadSessionID() -> String{
+        let sessionID = "SeshID:"
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let stringOne = defaults.stringForKey(sessionID) {
+            print("LOCAL DATA STORE: SESSION ID: \(stringOne)") // Some String Value
+            return stringOne
+        }
+        return "failed"
+    }
+    
+    class func loadUID() -> Int{
+        let UID = "UID:"
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let stringTwo = defaults.stringForKey(UID){
+            print("LOCAL DATA STORE : UID: \(stringTwo)")
+            let num:Int? = Int(stringTwo)
+            return num!
+        }
+        return 0;
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -148,5 +137,5 @@ class signUpViewController: UIViewController {
     
     
     
-
+    
 }

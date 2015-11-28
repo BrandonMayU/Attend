@@ -11,17 +11,17 @@ import UIKit
 import SwiftyJSON
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     //Elements
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
@@ -47,12 +47,10 @@ class ViewController: UIViewController {
     
     
     //functions
-    
     func sendLoginRequest(){
         
         let email : String = emailTxt.text! //Store email as String
         let password : String = passwordTxt.text!  //Store passwd as String
-        
         /*
         
         let url : String = "http://www.thegoodsite.org/attend/api.php?newuser_email=\(email)&newuser_name_first=\(firstName)&newuser_name_last=\(lastName)&newuser_pass=\(password)"
@@ -68,19 +66,17 @@ class ViewController: UIViewController {
         let urlNS = NSURL(string: url) //conver url to a NSURL
         let jsonData = NSData(contentsOfURL: urlNS!) as NSData!
         let readableJSON = JSON(data: jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
-
+        
         
         let getLoginPermission = readableJSON //This lets us read the JSON
         print("\(getLoginPermission)")        //Print to the console to check
-        let succesValue = readableJSON["success"] 
+        let succesValue = readableJSON["success"]
         print("Success : \(succesValue)")
         let errorKind = readableJSON["errorText"]
         print("ErrorKind: \(errorKind)")
-        
-        
         //This breaks down the login with if statment
         if (errorKind == nil){
-        
+            
             print("Have passed error system")
             errorLabel.hidden = true
             if(succesValue == true){
@@ -95,12 +91,22 @@ class ViewController: UIViewController {
             errorLabel.text = "\(errorKind)"
             errorLabel.hidden = false
         }
-        
-        
-        
-        
-        
+        enum defaultsKeys{
+            static let sessionID = "SeshID:"
+            static let UID = "UID:"
+        }
+        //saves the data
+        //needs access to the first name & last name
+        let userSessionID = readableJSON["newsessid"]
+        NSLog("SESHID \(userSessionID)")
+        let uid = readableJSON["uid"]
+        NSLog("USER ID SHOULD BE HERE:\(uid)")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue("\(userSessionID)", forKey: defaultsKeys.sessionID)
+        defaults.setValue("\(uid)", forKey: defaultsKeys.UID)
+        defaults.synchronize() //SESH ID and UID has been sent
     }
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         emailTxt.resignFirstResponder()

@@ -18,6 +18,7 @@ class iBeaconScannerViewController: UIViewController , CLLocationManagerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentUser()
         
         locationManager.delegate = self
         if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse) {
@@ -109,14 +110,28 @@ class iBeaconScannerViewController: UIViewController , CLLocationManagerDelegate
     
     func currentUser(){
         
+        
+        
         //1. Find session id (Get this off the local datastore)
+        let seshID = signUpViewController.loadSessionID()
+        let UID = String(signUpViewController.loadUID())
+        print("Session ID: \(seshID) UID: \(UID)")
         
         //2. Use the session id to send a get request
-        
+        let url : String = "http://www.thegoodsite.org/attend/api.php?current_uid=\(UID)&current_sessid=\(seshID)" //Login get request link
+        let urlNS = NSURL(string: url) //conver url to a NSURL
+        let jsonData = NSData(contentsOfURL: urlNS!) as NSData!
+        let readableJSON = JSON(data: jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        print("\(readableJSON)")
         //3. Store current user info as var from the JSON file
+        let currentUserName = readableJSON["current_user"]["name_first"]
+        print("Current User Name: \(currentUserName)")
+        
         
         
     }
+    
+    
 
 
 }
