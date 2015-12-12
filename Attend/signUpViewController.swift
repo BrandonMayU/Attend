@@ -85,6 +85,8 @@ class signUpViewController: UIViewController {
         enum defaultsKeys{
             static let sessionID = "SeshID:"
             static let UID = "UID:"
+            static let firstName = "FirstName:"
+            static let lastName = "LastName"
         }
         
         let email : String = emailTxt.text!
@@ -125,7 +127,7 @@ class signUpViewController: UIViewController {
             let num:Int? = Int(stringTwo)
             return num!
         }
-        return 0;
+        return 0
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

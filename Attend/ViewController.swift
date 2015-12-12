@@ -35,8 +35,11 @@ class ViewController: UIViewController {
         let password = passwordTxt.text!
         
         if(email == "" || password == ""){
+            errorLabel.text = "Email & Password Empty"
+            errorLabel.hidden = false
             print("Email and Password are missing Text")
         }else{
+            errorLabel.hidden = true
             sendLoginRequest()
         }
     }
@@ -105,6 +108,8 @@ class ViewController: UIViewController {
         defaults.setValue("\(userSessionID)", forKey: defaultsKeys.sessionID)
         defaults.setValue("\(uid)", forKey: defaultsKeys.UID)
         defaults.synchronize() //SESH ID and UID has been sent
+        
+        forceLocalDataStore()
     }
     
     
@@ -112,5 +117,78 @@ class ViewController: UIViewController {
         emailTxt.resignFirstResponder()
         passwordTxt.resignFirstResponder()
     }
+    
+    //Current User NAME AND LASTNAME
+    
+    func currentUserFirstName() -> String {
+        
+        
+        
+        //1. Find session id (Get this off the local datastore)
+        let seshID = signUpViewController.loadSessionID()
+        let UID = String(signUpViewController.loadUID())
+        print("Session ID: \(seshID) UID: \(UID)")
+        
+        //2. Use the session id to send a get request
+        let url : String = "http://www.thegoodsite.org/attend/api.php?current_uid=\(UID)&current_sessid=\(seshID)" //Login get request link
+        let urlNS = NSURL(string: url) //conver url to a NSURL
+        let jsonData = NSData(contentsOfURL: urlNS!) as NSData!
+        let readableJSON = JSON(data: jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        print("\(readableJSON)")
+        //3. Store current user info as var from the JSON file
+        let currentUserName = readableJSON["current_user"][0]["name_first"]
+        print("Current User Name: \(currentUserName)")
+        let currentUserLastName = readableJSON["current_user"][0]["name_last"]
+        print("Current User LastName: \(currentUserLastName)")
+        
+        return String(currentUserName)
+        
+        
+        
+    }
+    
+    func currentUserLastName() ->String {
+        //1. Find session id (Get this off the local datastore)
+        let seshID = signUpViewController.loadSessionID()
+        let UID = String(signUpViewController.loadUID())
+        print("Session ID: \(seshID) UID: \(UID)")
+        
+        //2. Use the session id to send a get request
+        let url : String = "http://www.thegoodsite.org/attend/api.php?current_uid=\(UID)&current_sessid=\(seshID)" //Login get request link
+        let urlNS = NSURL(string: url) //conver url to a NSURL
+        let jsonData = NSData(contentsOfURL: urlNS!) as NSData!
+        let readableJSON = JSON(data: jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        print("\(readableJSON)")
+        //3. Store current user info as var from the JSON file
+        let currentUserName = readableJSON["current_user"][0]["name_first"]
+        print("Current User Name: \(currentUserName)")
+        let currentUserLastName = readableJSON["current_user"][0]["name_last"]
+        print("Current User LastName: \(currentUserLastName)")
+        
+        return String(currentUserLastName)
+    }
+    
+    func forceLocalDataStore(){
+        let FirstName : String = currentUserFirstName()
+        let LastName : String = currentUserLastName()
+        
+        enum defaultsKeys{
+            static let sessionID = "SeshID:"
+            static let UID = "UID:"
+            static let firstName = "FirstName:"
+            static let lastName = "LastName"
+        }
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue("\(FirstName)", forKey: defaultsKeys.firstName)
+        defaults.setValue("\(LastName)", forKey: defaultsKeys.lastName)
+        defaults.synchronize() //SESH ID and UID has been sent
+        
+        
+    }
+    
+  
+
+    
 }
 

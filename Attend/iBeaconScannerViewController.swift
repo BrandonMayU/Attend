@@ -18,13 +18,15 @@ class iBeaconScannerViewController: UIViewController , CLLocationManagerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentUser()
+        currentUserFirstName()
+        
         
         locationManager.delegate = self
         if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse) {
             locationManager.requestWhenInUseAuthorization()
         }
         locationManager.startRangingBeaconsInRegion(region)
+       
     }
 
     
@@ -50,11 +52,12 @@ class iBeaconScannerViewController: UIViewController , CLLocationManagerDelegate
         else {
             self.view.backgroundColor = UIColor.grayColor()
             statusLabel.text = "Can't Find iBeacon"
+            statusLabel.hidden = false
         }
     }
     func updateDistance(distance: CLProximity)
     {
-        UIView.animateWithDuration(0.2)
+        UIView.animateWithDuration(0.1)
             {
                 switch distance
                 {
@@ -62,32 +65,38 @@ class iBeaconScannerViewController: UIViewController , CLLocationManagerDelegate
                     //self.view.backgroundColor = UIColor.grayColor()
                     self.view.backgroundColor = UIColor.blackColor()
                     self.statusLabel.text = "Can't Find iBeacon"
+                    self.statusLabel.hidden = false
                 case .Far:
-                    //self.view.backgroundColor = UIColor.blueColor()
+                    //self.view.backgsoundColor = UIColor.blueColor()
                     self.hideCheckin()
                     self.view.backgroundColor = UIColor(red: 201/255, green: 43/255, blue: 43/255, alpha: 1)
                     self.statusLabel.text = "Get Closer to the Beacon!"
                     self.statusLabel.textColor = UIColor.whiteColor()
                 case .Near:
-                    //self.view.backgroundColor = UIColor.orangeColor()
-                    self.view.backgroundColor = UIColor.orangeColor() //Orange
+                    self.view.backgroundColor = UIColor.greenColor() //Show Green (Zone 2)
                     self.statusLabel.text = "iBeacon is Near"
                     self.statusLabel.textColor = UIColor.whiteColor()
-                    self.showName()
                     self.showCheckin()
+                    self.displayName()
+                    print("Zone 2")
+                    
+                    //self.animateImage()
                 case .Immediate:
                     self.view.backgroundColor = UIColor.greenColor()
                     self.statusLabel.text = "iBeacon is Close"
                     self.statusLabel.textColor = UIColor.whiteColor()
-                    self.showName()
                     self.showCheckin()
-                    print("Close")
+                    //self.animateImage()
+                    self.displayName()
+                    print("Zone 1")
                 }
         }
     }
     
     func showName(){
-        //Right Code that can read JSON to get the current usersname
+        studentName.hidden = false
+        studentName.text = "\(currentUserFirstName()) \(currentUserLastName())"
+       
     }
     
     func hideCheckin(){
@@ -97,6 +106,7 @@ class iBeaconScannerViewController: UIViewController , CLLocationManagerDelegate
         animatedCheckIn.hidden = true
         getCloser.hidden = false
         statusLabel.hidden = false
+        
     }
     
     func showCheckin(){
@@ -106,9 +116,15 @@ class iBeaconScannerViewController: UIViewController , CLLocationManagerDelegate
         animatedCheckIn.hidden = false
         getCloser.hidden = true
         statusLabel.hidden = false
+        
+        /*
+        var strImg : String = "http://i.imgur.com/HvLj1Ec.gif"
+        var url: NSURL = NSURL(string: strImg)!
+        //animatedCheckIn.image = UIImage.animatedImageWithAnimatedGIFURL(url)
+        */
     }
     
-    func currentUser(){
+    func currentUserFirstName() -> String {
         
         
         
@@ -124,13 +140,72 @@ class iBeaconScannerViewController: UIViewController , CLLocationManagerDelegate
         let readableJSON = JSON(data: jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
         print("\(readableJSON)")
         //3. Store current user info as var from the JSON file
-        let currentUserName = readableJSON["current_user"]["name_first"]
+        let currentUserName = readableJSON["current_user"][0]["name_first"]
         print("Current User Name: \(currentUserName)")
+        let currentUserLastName = readableJSON["current_user"][0]["name_last"]
+        print("Current User LastName: \(currentUserLastName)")
+        
+        return String(currentUserName)
         
         
         
     }
     
+    func currentUserLastName() ->String {
+        
+        
+        //1. Find session id (Get this off the local datastore)
+        let seshID = signUpViewController.loadSessionID()
+        let UID = String(signUpViewController.loadUID())
+        print("Session ID: \(seshID) UID: \(UID)")
+        
+        //2. Use the session id to send a get request
+        let url : String = "http://www.thegoodsite.org/attend/api.php?current_uid=\(UID)&current_sessid=\(seshID)" //Login get request link
+        let urlNS = NSURL(string: url) //conver url to a NSURL
+        let jsonData = NSData(contentsOfURL: urlNS!) as NSData!
+        let readableJSON = JSON(data: jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        print("\(readableJSON)")
+        //3. Store current user info as var from the JSON file
+        let currentUserName = readableJSON["current_user"][0]["name_first"]
+        print("Current User Name: \(currentUserName)")
+        let currentUserLastName = readableJSON["current_user"][0]["name_last"]
+        print("Current User LastName: \(currentUserLastName)")
+        
+        return String(currentUserLastName)
+    }
+    
+ 
+    
+    //These Classes Load First and Last Name from local datastore------
+    class func loadFirstName() -> String{
+        let FirstName = "FirstName:"
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let stringTwo = defaults.stringForKey(FirstName){
+            print("LOCAL DATA STORE : FirstName: \(stringTwo)")
+            let FirstName:String = String(stringTwo)
+            print("Local Data Store: FirstName : \(FirstName)")
+            
+            return FirstName
+            
+        }
+        let fail : String = "Fail"
+        print("Fail")
+        return fail
+    }
+   
+    
+    
+    
+    //-----------------------------------------------------------------
+    
+    func displayName(){
+        let FirstName = iBeaconScannerViewController.loadFirstName()
+        
+        let fullname : String = "\(FirstName)"
+        
+        studentName.hidden = false
+        studentName.text = fullname
+    }
     
 
 
