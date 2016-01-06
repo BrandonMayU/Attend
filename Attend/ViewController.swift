@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ViewController.swift (Main Login Screen)
 //  Attend
 //
 //  Created by Brandon Mayhew on 2015-11-18.
@@ -50,73 +50,6 @@ class ViewController: UIViewController {
     
     
     //functions
-    func sendLoginRequest(){
-        
-        let email : String = emailTxt.text! //Store email as String
-        let password : String = passwordTxt.text!  //Store passwd as String
-        /*
-        
-        let url : String = "http://www.thegoodsite.org/attend/api.php?newuser_email=\(email)&newuser_name_first=\(firstName)&newuser_name_last=\(lastName)&newuser_pass=\(password)"
-        let nsurly = NSURL(string: url)
-        let jsonData = NSData(contentsOfURL: nsurly!) as NSData!
-        let readableJSON = JSON(data: jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
-        
-        let sendRequest = readableJSON
-        
-        */
-        
-        let url : String = "http://thegoodsite.org/attend/api.php?signin_email=\(email)&signin_pass=\(password)" //Login get request link
-        let urlNS = NSURL(string: url) //conver url to a NSURL
-        let jsonData = NSData(contentsOfURL: urlNS!) as NSData!
-        let readableJSON = JSON(data: jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
-        
-        
-        let getLoginPermission = readableJSON //This lets us read the JSON
-        print("\(getLoginPermission)")        //Print to the console to check
-        let succesValue = readableJSON["success"]
-        print("Success : \(succesValue)")
-        let errorKind = readableJSON["errorText"]
-        print("ErrorKind: \(errorKind)")
-        //This breaks down the login with if statment
-        if (errorKind == nil){
-            
-            print("Have passed error system")
-            errorLabel.hidden = true
-            if(succesValue == true){
-                print("SUCCESSFULLY Verifed user!")
-                //User has succesfull passed the check and may contiue
-                performSegueWithIdentifier("loginSuccess", sender: nil)
-                
-            }else{
-                print("Failed to verify user")
-            }
-        }else{
-            errorLabel.text = "\(errorKind)"
-            errorLabel.hidden = false
-        }
-        enum defaultsKeys{
-            static let sessionID = "SeshID:"
-            static let UID = "UID:"
-        }
-        //saves the data
-        //needs access to the first name & last name
-        let userSessionID = readableJSON["newsessid"]
-        NSLog("SESHID \(userSessionID)")
-        let uid = readableJSON["uid"]
-        NSLog("USER ID SHOULD BE HERE:\(uid)")
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setValue("\(userSessionID)", forKey: defaultsKeys.sessionID)
-        defaults.setValue("\(uid)", forKey: defaultsKeys.UID)
-        defaults.synchronize() //SESH ID and UID has been sent
-        
-        forceLocalDataStore()
-    }
-    
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        emailTxt.resignFirstResponder()
-        passwordTxt.resignFirstResponder()
-    }
     
     //Current User NAME AND LASTNAME
     
@@ -128,6 +61,7 @@ class ViewController: UIViewController {
         let seshID = signUpViewController.loadSessionID()
         let UID = String(signUpViewController.loadUID())
         print("Session ID: \(seshID) UID: \(UID)")
+        
         
         //2. Use the session id to send a get request
         let url : String = "http://www.thegoodsite.org/attend/api.php?current_uid=\(UID)&current_sessid=\(seshID)" //Login get request link
@@ -168,6 +102,8 @@ class ViewController: UIViewController {
         return String(currentUserLastName)
     }
     
+    
+    
     func forceLocalDataStore(){
         let FirstName : String = currentUserFirstName()
         let LastName : String = currentUserLastName()
@@ -187,8 +123,84 @@ class ViewController: UIViewController {
         
     }
     
+    
+    func sendLoginRequest(){
+        
+        let email : String = emailTxt.text! //Store email as String
+        let password : String = passwordTxt.text!  //Store passwd as String
+        /*
+        
+        let url : String = "http://www.thegoodsite.org/attend/api.php?newuser_email=\(email)&newuser_name_first=\(firstName)&newuser_name_last=\(lastName)&newuser_pass=\(password)"
+        let nsurly = NSURL(string: url)
+        let jsonData = NSData(contentsOfURL: nsurly!) as NSData!
+        let readableJSON = JSON(data: jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        
+        let sendRequest = readableJSON
+        
+        */
+        
+        let url : String = "http://thegoodsite.org/attend/api.php?signin_email=\(email)&signin_pass=\(password)" //Login get request link
+        let urlNS = NSURL(string: url) //conver url to a NSURL
+        let jsonData = NSData(contentsOfURL: urlNS!) as NSData!
+        let readableJSON = JSON(data: jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        
+        
+        let getLoginPermission = readableJSON //This lets us read the JSON
+        print("\(getLoginPermission)")        //Print to the console to check
+        var succesValue = readableJSON["success"]
+        print("Success : \(succesValue)")
+        let errorKind = readableJSON["errorText"]
+        print("ErrorKind: \(errorKind)")
+        //This breaks down the login with if statment
+        if succesValue == true{
+            if (errorKind == nil){
+                
+                print("Have passed error system")
+                errorLabel.hidden = true
+                
+                    if(succesValue == true){
+                        print("SUCCESSFULLY Verifed user!")
+                        //User has succesfull passed the check and may contiue
+                        performSegueWithIdentifier("loginSuccess", sender: nil)
+                    
+                    }else{
+                        print("Failed to verify user")
+                        errorLabel.text = "\(errorKind)"
+                        errorLabel.hidden = false
+                    }
+            }
+        
+        
+        
+        
+            enum defaultsKeys{
+                static let sessionID = "SeshID:"
+                static let UID = "UID:"
+            }
+            
+        //saves the data
+        //needs access to the first name & last name
+        let userSessionID = readableJSON["newsessid"]
+        NSLog("SESHID \(userSessionID)")
+        let uid = readableJSON["uid"]
+        NSLog("USER ID SHOULD BE HERE:\(uid)")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue("\(userSessionID)", forKey: defaultsKeys.sessionID)
+        defaults.setValue("\(uid)", forKey: defaultsKeys.UID)
+        defaults.synchronize() //SESH ID and UID has been sent
+        
+        forceLocalDataStore()
+        }
+    
+    
+    func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        emailTxt.resignFirstResponder()
+        passwordTxt.resignFirstResponder()
+    }
+    
+
   
 
     
 }
-
+}

@@ -125,10 +125,11 @@ class signUpViewController: UIViewController {
         if let stringTwo = defaults.stringForKey(UID){
             print("LOCAL DATA STORE : UID: \(stringTwo)")
             let num:Int? = Int(stringTwo)
-            return num!
+            
         }
         return 0
     }
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         firstnameTxt.resignFirstResponder()
@@ -137,7 +138,7 @@ class signUpViewController: UIViewController {
         passwordTxt.resignFirstResponder()
     }
     
-    
+  
     
     
 }
