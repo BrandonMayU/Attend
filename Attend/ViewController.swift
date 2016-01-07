@@ -49,9 +49,9 @@ class ViewController: UIViewController {
     }
     
     
-    //functions
+    //functions=========================================================================
     
-    //Current User NAME AND LASTNAME
+    //Current User NAME AND LASTNAME--------------------
     
     func currentUserFirstName() -> String {
         
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
         
         return String(currentUserLastName)
     }
-    
+    --------------------------------------------
     
     
     func forceLocalDataStore(){
@@ -191,8 +191,27 @@ class ViewController: UIViewController {
         
         forceLocalDataStore()
         }
+        
+        func succesInfo()->Bool{  //This line sends a json request to see the status of the success value at login!
+            
+            var email = emailTxt.text
+            var password = passwordTxt.text
+            
+            let url : String = "http://thegoodsite.org/attend/api.php?signin_email=\(email)&signin_pass=\(password)" //Login get request link
+            let urlNS = NSURL(string: url) //conver url to a NSURL
+            let jsonData = NSData(contentsOfURL: urlNS!) as NSData!
+            let readableJSON = JSON(data: jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+            
+            
+            let getLoginPermission = readableJSON //This lets us read the JSON
+            print("\(getLoginPermission)")        //Print to the console to check
+            var succesValue = readableJSON["success"]
+            
+        }
     
-    
+    //===============================================================================
+        
+        
     func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         emailTxt.resignFirstResponder()
         passwordTxt.resignFirstResponder()
