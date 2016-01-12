@@ -14,7 +14,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the view, typically from a nib.s
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -27,6 +28,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     
+    //Returned Functions
+    
     
     //Buttons
     @IBAction func loginButton(sender: AnyObject) {
@@ -34,7 +37,7 @@ class ViewController: UIViewController {
         let email = emailTxt.text!
         let password = passwordTxt.text!
         
-        if(email == "" || password == ""){
+        if(email == "" || password == "" || email == "" && password == ""){
             errorLabel.text = "Email & Password Empty"
             errorLabel.hidden = false
             print("Email and Password are missing Text")
@@ -47,6 +50,7 @@ class ViewController: UIViewController {
     @IBAction func signupButton(sender: AnyObject) {
         print("SignUp Button Called")
     }
+    
     
     
     //functions=========================================================================
@@ -101,7 +105,7 @@ class ViewController: UIViewController {
         
         return String(currentUserLastName)
     }
-    --------------------------------------------
+   // --------------------------------------------
     
     
     func forceLocalDataStore(){
@@ -155,7 +159,7 @@ class ViewController: UIViewController {
         if succesValue == true{
             if (errorKind == nil){
                 
-                print("Have passed error system")
+                print("Success : True")
                 errorLabel.hidden = true
                 
                     if(succesValue == true){
@@ -163,13 +167,14 @@ class ViewController: UIViewController {
                         //User has succesfull passed the check and may contiue
                         performSegueWithIdentifier("loginSuccess", sender: nil)
                     
-                    }else{
+                    }else {
                         print("Failed to verify user")
                         errorLabel.text = "\(errorKind)"
                         errorLabel.hidden = false
                     }
+            }else{
+                print("Success : False")
             }
-        
         
         
         
@@ -192,10 +197,10 @@ class ViewController: UIViewController {
         forceLocalDataStore()
         }
         
-        func succesInfo()->Bool{  //This line sends a json request to see the status of the success value at login!
+        func succesInfo(){  //This line sends a json request to see the status of the success value at login!
             
-            var email = emailTxt.text
-            var password = passwordTxt.text
+            let email = emailTxt.text
+            let password = passwordTxt.text
             
             let url : String = "http://thegoodsite.org/attend/api.php?signin_email=\(email)&signin_pass=\(password)" //Login get request link
             let urlNS = NSURL(string: url) //conver url to a NSURL
@@ -207,19 +212,13 @@ class ViewController: UIViewController {
             print("\(getLoginPermission)")        //Print to the console to check
             var succesValue = readableJSON["success"]
             
+            
         }
     
     //===============================================================================
         
         
-    func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        emailTxt.resignFirstResponder()
-        passwordTxt.resignFirstResponder()
-    }
     
-
-  
-
     
 }
 }
